@@ -1,0 +1,273 @@
+version: "3.1"
+intents:
+- risk_assess
+- say_name
+- goodbye
+- affirm
+- deny
+- mood_great
+- mood_unhappy
+- ask_name
+- Woman
+- Man
+- ask_age
+- age
+- affirm_s
+- deny_s
+- affirm_a
+- deny_a
+- affirm_r
+- deny_r
+- affirm_pe
+- deny_pe
+- ask_weight
+- ask_height
+- weight
+- height
+- bmi
+- bot_challenge
+- greet
+- inform_management
+- manage_alco
+- manage_weight
+- manage_smoke
+
+entities:
+- gender
+- age
+- alco
+- smoke
+- daily_activity
+- height
+- weight
+- motivation
+- health
+- PERSON
+slots:
+  gender:
+    type: categorical
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      value: '0'
+      intent: Man
+    - type: from_intent
+      value: '1'
+      intent: Woman
+    values: []
+  alco:
+    type: categorical
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      value: '1'
+      intent: affirm_a
+    - type: from_intent
+      value: '0'
+      intent: deny_a
+    values: []
+  age:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      influence_conversation: true
+      entity: age
+      intent: ask_age
+      not_intent: ask_weight & ask_height
+    max_value: 100.0
+    min_value: 12.0
+  smoke:
+    type: categorical
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      value: '1'
+      intent: affirm_s
+    - type: from_intent
+      value: '0'
+      intent: deny_s
+    values: []
+  daily_activity:
+    type: categorical
+    influence_conversation: true
+    mappings:
+    - type: from_intent
+      value: '1'
+      intent: affirm_pe
+    - type: from_intent
+      value: '0'
+      intent: deny_pe
+    values: []
+  height:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      influence_conversation: true
+      entity: height
+      intent: ask_height
+      not_intent: ask_weight & ask_age
+    max_value: 3.0
+    min_value: 0.0
+  weight:
+    type: float
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      influence_conversation: true
+      entity: weight
+      intent: ask_weight
+      not_intent: ask_height & ask_age
+    max_value: 200.0
+    min_value: 30.0
+  PERSON:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: PERSON
+responses:
+  utter_ask_age:
+  - text: I am going to start my assessment by asking you about your age. Did you know that ageing is directly correlated to an increased risk of cardiovascular diseases. How old are you? (e.g. 30 years old)
+  utter_welcome-greet:
+  - text: Hello! I am your cardiovascular agent and I am here to help you uncover potential health risks and manage your lifestyle accordingly.
+  utter_disclaimer:
+  - text: Please note that this assessment is not intended or implied to be a substitute for professional medical advice, diagnosis or treatment. By proceeding to the next stage of the conversation, you agree to these terms. To proceeed, please ask for your risk assessment. 
+  utter_ask_gender:
+  - buttons:
+    - payload: /Man
+      title: Man
+    - payload: /Woman
+      title: Woman
+    text: Thank you for your answer! Now could you please tell me which gender do you identify with? (Man/Woman) This data will be collected to give you a personalized experience and accurate results.
+  utter_ask_alco:
+  - buttons:
+    - payload: /affirm_a
+      title: Yes
+    - payload: /deny_a
+      title: No
+    text: Your alcohol consumption can have an effect on your cardiovascular health. Therefore, I would like to ask you whether you consume alcohol more than once per week?
+  utter_ask_smoke:
+  - buttons:
+    - payload: /affirm_s
+      title: Yes
+    - payload: /deny_s
+      title: No
+    text: Your day to day activities can have a direct effect on your cardiovascular health. I would also like to ask you whether you smoke or not?
+  utter_ask_daily_activity:
+  - buttons:
+    - payload: /affirm_pe
+      title: Yes
+    - payload: /deny_pe
+      title: No
+    text: Another habit I would like to discuss is physical activity. Do you consider yourself physically active?
+  utter_ask_height:
+  - text: The next thing I need from you to input in order to calculate your body mass index is your height. Could you please type in your height (m)?
+  utter_ask_weight:
+  - text: To calculate your body mass index I also need you to input your weight (enter digits in kg, e.g. 60 kg)
+  - text: How much do you weigh? (enter digits in kg, e.g. 60 kg)
+  utter_submit:
+  - text: Great, thanks!
+  utter_submit_risk:
+  - text: Thank you, I will use your inputs to calculate your cardiovascular risk.
+  utter_ask_bmi:
+  - text: For instance, your body mass index is a function of your weight and height. Weight is a factor you may have control over. Are you interested in knowing which BMI classification percentile you fall into?
+  utter_ask_continue:
+  - text: Are you sure you want to stop the form?
+  utter_welcome_name:
+  - text: Nice to meet you {PERSON}
+  utter_risk_slots:
+  - text: We calculate the risk based on your inputs such as; that you were born as a {gender} and you are {age} years old. You {smoke} and {alco}. You measure {height} cm and you weigh {weight} kg.
+  utter_risk_result:
+  - text: Sorry, I am not yet ready to give you the risk value.
+  utter_bmi:
+  - text: Based on your inputs, you measure {height} cm and your weight is {weight} kg. Therefore your bmi is equal to
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_will_seek_help:
+  - text: Sorry, I am not yet able to offer help on this. But in the meantime you can find great resources at https://www.who.int/news-room/fact-sheets/detail/cardiovascular-diseases-(cvds)
+  utter_default:
+  - text: Sorry, I didn't get that, can you rephrase?
+  utter_wants_manage:
+  - text: Would you like to learn how you could reduce your risk?
+  utter_chitchat:
+  - text: say default
+  # utter_slots_values:
+  # - text: |-
+  #     Here are your answers:
+  #     {gender}
+  #     {age}
+  #     {alco}
+  #     {smoke}
+  #     {daily_activity}
+  #     {height}
+  #     {weight}
+  utter_inform_bmi:
+  - text: Again, it is important to focus on factors you can control, such as weight. Weight gain increases blood pressure, insulin resistance and cholesterol, which affect the CVD risk. To learn about ways to manage your weight, type "manage weight". 
+  utter_ask_manageweight:
+  - text: Making changes to what you eat and drink can have a significant effect on your weight, and therefore your cardiovascular risk. My recommendations are based on the best tips recommended by the NHS to maintain a healthy weight. 
+  utter_manageweight1:
+  - text: As a first step, I would recommend not skipping breakfast. In fact, you could miss out on essential nutrients and you may end up snacking more throughout the day because you feel hungry.
+  utter_learnmore:
+  - text: If you don't find this helpful, you are free to stop at anytime. Please let me know if you would like me to offer different management tips, otherwise I will proceed with other sets of useful tips.
+  utter_manageweight2:
+  - text: I would also recommend small changes (like swapping sugary drinks for water or ditching sugar from your tea) can make a big difference in the long term. If you are interested, you can download thee free NHS plan using this link https://www.nhs.uk/better-health/lose-weight/. 
+  utter_switch_to_smoke_mgt:
+  - text: Another bad habit that can usually increase your risk of having cardiovascular related morbidities. If you are interested to learn more about how it affects your risk, let me know by typing "smoking management".
+  utter_managesmoke:
+  - text: Cross-sectional associations have been observed between smoking and alcohol consumption, which could be the result of psychological traits or induced by the external environment. If you are experiencing any stress it would be useful to discover other ways that could make you feel better. 
+  utter_managesmoke2:
+  - text: As a first step, I would recommend looking at proven methods that have incited ex-smokers to stop. Such as considering non-nicotine medications and seeking behavioral support. 
+  # utter_manageactive:
+  # - text: xxx
+  utter_switch_to_alco_mgt:
+  - text: Alcohol consumption can also be considered a dietary habit. If you are interested to learn more about how it affects your risk, let me know by typing "alcohol management".
+  utter_ask_managealco:
+  - text: Consuming alcohol can be enjoyable on a night out, but be mindful of your consumption. I will now explain how alcohol consumption affects your cardiovascular risk. 
+  utter_managealco1:
+  - text: A standard glass of wine can contain as many calories as a piece of chocolate. Over time, drinking too much can easily contribute to weight gain, which has been shown to increase your risk of morbidities associated to cardiovascular disease. If interested here is a comparison between the calorie contents of different drinks https://www.nhs.uk/live-well/alcohol-advice/calories-in-alcohol/
+  utter_managealco2:
+  - text: Men and women are advised to not regularly drink more than 14 units a week. One tip I could suggest is to alternate an alcoholic drink with a glass of water to prevent you becoming dehydrated.
+  utter_link:
+  # - text: Let me explain in a simpler way, how I came to that diagnosis. Please click this link (https://5c1a-2a0c-5bc0-40-2e34-f94a-80bd-c0d2-af90.eu.ngrok.io), to understand what factors I have found to affect your risk. 
+  - text: Let me explain in a simpler way, how I came to that diagnosis. Please click this link (https://5c1a-2a0c-5bc0-40-2e34-f94a-80bd-c0d2-af90.eu.ngrok.io/fig1.jpg), to understand what factors I have found to affect your risk. 
+  utter_explain_link: 
+  - text: The following image shows the factors that have influenced your prediction. Blue lines are allocated to factors that do not increase your risk, while orange lines are the factors that have shifted your prediction towards the potential presence of cardiovascular diseases. Fortunately, some of these factors are manageable! 
+actions:
+- risk_assessment
+- risk_management
+- action_set_height
+- action_set_weight
+- action_calculate_bmi
+- action_risk_assessment
+- action_explain_risk
+forms:
+  simple_risk_form:
+    required_slots:
+    - gender
+    - age
+    - alco
+    - smoke
+    - daily_activity
+    - height
+    - weight
+  bmi_form:
+    required_slots:
+    - weight
+    - height
+
+session_config:
+  session_expiration_time: 3
+  carry_over_slots_to_new_session: false

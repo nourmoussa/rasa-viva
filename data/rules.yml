@@ -1,0 +1,97 @@
+version: "3.1"
+
+rules:
+
+# - rule: Say goodbye anytime the user says goodbye
+#   steps:
+#   - intent: goodbye
+#   - action: utter_goodbye
+
+# - rule: Say 'I am a bot' anytime the user challenges
+#   steps:
+#   - intent: bot_challenge
+#   - action: utter_iamabot
+
+- rule: activate assessment anytime the user asks for risk prediction
+  steps:
+  - intent: risk_assess
+  - action: simple_risk_form
+  - active_loop: simple_risk_form
+
+- rule: Elicitation form
+  condition:
+  - active_loop: simple_risk_form
+  steps:
+  - action: simple_risk_form
+  - slot_was_set: 
+    - requested_slot: null
+  - active_loop: null
+  # - action: utter_slots_values
+  - action: action_risk_assessment
+  - action: action_explain_risk
+  - action: utter_link
+  - action: utter_explain_link
+  - action: utter_ask_bmi
+  - intent: affirm
+  - action: action_set_height
+  - action: action_set_weight
+  - action: action_calculate_bmi
+  - action: utter_inform_bmi
+  
+- rule: user requests healthy weight management tips 
+  steps: 
+  - intent: manage_weight
+  - action: utter_ask_manageweight
+  - action: utter_manageweight1
+  - action: utter_learnmore
+  - action: utter_manageweight2
+  - action: utter_switch_to_alco_mgt
+
+- rule: user requests alcohol consumption management tips
+  steps: 
+  - intent: manage_alco
+  - action: utter_ask_managealco
+  - action: utter_managealco1
+  - action: utter_managealco2
+  - action: utter_switch_to_smoke_mgt
+
+- rule: user requests smoking management tips 
+  steps: 
+  - intent: manage_smoke
+  - action: utter_managesmoke
+  # - action: utter_manageactive
+  # - action
+
+#   - slot_was_set: 
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_slots_values
+#   - action: action_risk_assessment
+#   - action: utter_link
+
+# - rule: Activate form
+#   steps:
+#   - intent: greet
+#   - action: utter_welcome-greet
+#   - action: utter_disclaimer
+#   - action: simple_risk_form
+#   - active_loop: simple_risk_form
+
+# - rule: Elicitation form
+#   condition:
+#   - active_loop: simple_risk_form
+#   steps:
+#   - action: simple_risk_form
+#   - slot_was_set: 
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_slots_values
+#   - action: action_risk_assessment
+#   - action: utter_link
+#   - action: utter_submit_risk
+#   - action: utter_ask_bmi
+#   - intent: affirm
+#   - action: action_set_height
+#   - action: action_set_weight
+#   - action: action_calculate_bmi
+#   - action: utter_inform_bmi

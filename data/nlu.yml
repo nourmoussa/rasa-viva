@@ -1,0 +1,198 @@
+version: "3.1"
+
+nlu:
+- intent: risk_assess
+  examples: |
+    - risk
+    - calculate my risk
+    - What is my predicted cardio risk?
+    - What are my chances of having an attack?
+    - What are my chances of having a heart attack?
+    - Will my CVD get worst?
+    - What is my cardio risk?
+    - I want to calculate my risk. 
+    - I want to know if I am prone to have CVD. 
+    - Calculate CVD risk. 
+    - Calculate cardio risk. 
+- intent: inform_management  
+  examples: |
+    - I'd like to manage my [risk](motivation) of cardiovascular disease. 
+    - I'd like to manage my cardiovascular [risk](motivation)
+    - I want to reduce my [risk](motivation)
+    - I want/should/would do more (exercise)(motivation)
+    - I want/should/would loose/gain (weight)(motivation)
+    - I want to reduce my (alcohol intake)(motivation)
+    - I want to [prevent](motivation) risks of morbidities
+- intent: say_name
+# generalise with Spacy https://learning.rasa.com/conversational-ai-with-rasa/entities/
+  examples: |
+    - my name is ["PERSON"]{"entity":"PERSON"}
+    - my name is [nour]{"entity":"PERSON"}
+    - my name is [maya]{"entity":"PERSON"}
+    - my name is [yasmina]{"entity":"PERSON"}
+    - my name is [john]{"entity":"PERSON"}
+    - my name is [clara]{"entity":"PERSON"}
+    - I am called [peter](PERSON)
+    - I am called [nour](PERSON)
+    - You can call me [peter](PERSON)
+    - You can call me [nour](PERSON)
+    - You can call me [janet](PERSON)
+    - I am ["PERSON"]{"entity":"PERSON"}
+  
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - bonjour 
+    - bonsoir 
+    - Hi 
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - yes, please
+    - I would be grateful
+    - sure
+    - great
+    - oui
+    - perfect
+    - ok
+    - Tell me more
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: ask_name
+  examples: |
+    - What is your name?
+    - May I know your name?
+    - What do people call you?
+    - Do you have a name for yourself?
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: ask_age 
+  examples: |
+    - I am [20]{"entity":"age"} years old
+    - [55]{"entity":"age"} years
+    - [30]{"entity":"age"}
+    - [40]{"entity":"age"}
+    - [60]{"entity":"age"} years
+    - [55](age) years
+    - [30](age)
+- intent: ask_height 
+  examples: |
+    - my height is [1.8]{"entity":"height"} m
+    - I measure [1.5]{"entity":"height"} m
+    - [1.75]{"entity":"height"} m
+    - [1.82](height) m 
+    - [1.9](height)
+    - [1.60](height)
+    - [1.54](height)m
+    - [1.77](height)meters
+    - [1.84](height)METERS
+- intent: ask_weight
+  examples: |
+    - my weight is [50]{"entity":"weight"} kg
+    - I weigh [75]{"entity":"weight"} kg
+    - [80]{"entity":"weight"} kg
+    - [55]{"entity":"weight"} kg
+    - [62]{"entity":"weight"}kg
+    - [80]{"entity":"weight"}
+    - [77](weight) Kg
+    - [52](weight)
+    - [100](weight)kg
+    - [80](weight) kg
+    - [63](weight)KG
+    - [63](weight) Killograms
+- intent: manage_weight
+  examples: |
+    - manage weight 
+    - can you tell me more about my weight? 
+    - learn weight 
+    - understand weight management
+    - manage weights 
+    - weight management 
+    - tell me about tips to manage weight
+    - manage my weight
+    - Healthy Weight Management
+- intent: manage_alco
+  examples: |
+    - alcohol management
+    - alco management 
+    - alco mgt 
+    - manage alcohol 
+    - manage alco
+    - I want to manage my alcohol consumption
+    - I want to understand how alcohol affects my risk
+    - alcohol
+    - drinking 
+    - I want to understand how my drinking habits affect my risk
+    - Alcohol Consumption Management
+- intent: manage_smoke 
+  examples: |
+    - smoking management 
+    - smoke management
+    - manage smoking 
+    - smoke manage 
+    - smoking habits 
+    - i want to manage my smoking 
+    - I want to stop smoking 
+    - How does smoking affect my CVD 
+    - How does smoking increase my risk 
+    - Smoking Management

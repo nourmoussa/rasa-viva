@@ -1,0 +1,52 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-PERSON",
+      "2": "I-PERSON",
+      "3": "L-PERSON",
+      "4": "U-PERSON",
+      "5": "B-age",
+      "6": "I-age",
+      "7": "L-age",
+      "8": "U-age",
+      "9": "B-height",
+      "10": "I-height",
+      "11": "L-height",
+      "12": "U-height",
+      "13": "B-motivation",
+      "14": "I-motivation",
+      "15": "L-motivation",
+      "16": "U-motivation",
+      "17": "B-weight",
+      "18": "I-weight",
+      "19": "L-weight",
+      "20": "U-weight",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-PERSON": 1,
+      "I-PERSON": 2,
+      "L-PERSON": 3,
+      "U-PERSON": 4,
+      "B-age": 5,
+      "I-age": 6,
+      "L-age": 7,
+      "U-age": 8,
+      "B-height": 9,
+      "I-height": 10,
+      "L-height": 11,
+      "U-height": 12,
+      "B-motivation": 13,
+      "I-motivation": 14,
+      "L-motivation": 15,
+      "U-motivation": 16,
+      "B-weight": 17,
+      "I-weight": 18,
+      "L-weight": 19,
+      "U-weight": 20,
+      "O": 0
+    },
+    "num_tags": 21
+  }
+]

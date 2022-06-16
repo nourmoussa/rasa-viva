@@ -1,0 +1,48 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_welcome-greet
+  - action: utter_disclaimer
+  # - intent: risk_assess
+  # - action: simple_risk_form
+  # - active_loop: simple_risk_form
+  # - active_loop: null
+  # # - slot_was_set: 
+  # #   - required_slots: ["gender", "alco", "age", "smoke", "daily_activity", "height", "weight"]
+  # - action: utter_slots_values
+  # - action: action_risk_assessment
+  # - action: utter_link
+
+# - story: manage weight
+#   steps: 
+#   - intent: manage_weight
+#   - action: utter_ask_manageweight
+#   - intent: affirm 
+#   - action: utter_manageweight1
+#   - action: utter_learnmore
+#   - intent: affirm
+#   - action: utter_manageweight2
+
+# - story: sad path 1
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: affirm
+#   - action: utter_happy
+
+# - story: sad path 2
+#   steps:
+#   - intent: greet
+#   - action: utter_greet
+#   - intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - intent: deny
+#   - action: utter_goodbye
